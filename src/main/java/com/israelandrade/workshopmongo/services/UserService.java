@@ -1,6 +1,7 @@
 package com.israelandrade.workshopmongo.services;
 
 import com.israelandrade.workshopmongo.domain.User;
+import com.israelandrade.workshopmongo.dto.UserDTO;
 import com.israelandrade.workshopmongo.repositories.UserRepository;
 import com.israelandrade.workshopmongo.services.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,5 +26,13 @@ public class UserService {
             throw  new ObjectNotFoundException("Objeto não encotrado");
         }
         return user;
+    }
+
+    public User insert(User obj){
+        return repository.save(obj);
+    }
+
+    public User fromDTO(UserDTO objDTO){
+        return new User(objDTO.getId(), objDTO.getName(), objDTO.getEmail());
     }
 }
